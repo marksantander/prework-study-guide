@@ -25,3 +25,19 @@ console.log("Here are the topics we learned through Prework:");
 listTopics();
 console.log("Which topic should we study first?");
 selectTopic();
+
+fetch("./VERSION")
+  .then(function (response) {
+    if (!response.ok) throw new Error("Version file not found");
+    return response.text();
+  })
+  .then(function (version) {
+    var versionEl = document.getElementById("version-display");
+    if (versionEl) {
+      versionEl.textContent = "v" + version.trim();
+    }
+  })
+  .catch(function () {
+    var versionEl = document.getElementById("version-display");
+    if (versionEl) versionEl.textContent = "";
+  });
